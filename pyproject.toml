@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "prana"
+version = "0.1.0"
+description = "Give any chatbot a life — an open-source brain runtime that turns a chatbot into an autonomous agent"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Prabhjot Singh" }]
+keywords = ["ai", "agent", "llm", "autonomous", "chatbot", "byok"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = []  # stdlib only; providers use urllib
+
+[project.optional-dependencies]
+test = ["pytest>=7"]
+
+[project.scripts]
+prana = "prana.__main__:main"
+prana-daemon = "prana.proactivity.daemon:main"
+prana-telegram = "prana.channels.run:main"
+prana-mcp = "prana.mcp_server:main"
+prana-whatsapp = "prana.channels.whatsapp_run:main"
+prana-discord = "prana.channels.discord_run:main"
+prana-setup = "prana.setup:main"
+
+[tool.setuptools.packages.find]
+include = ["prana*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
