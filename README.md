@@ -11,7 +11,7 @@
 [![Lines](https://img.shields.io/badge/code-%7E10k_lines-b366ff.svg)](#-architecture)
 
 **🫁 PRANA** — an open-source **brain runtime** that turns any plain chatbot
-into a Muse-like autonomous agent.
+into an autonomous AI agent.
 
 ReAct loop · real tools · persistent memory · proactive daemon · personality ·
 your own API key. **Stdlib-only Python. Zero dependencies.**
@@ -23,10 +23,10 @@ your own API key. **Stdlib-only Python. Zero dependencies.**
 ```bash
 git clone https://github.com/Thegreatprabh/Prana
 cd Prana
-pip install -e .          # stdlib only — kuch aur install nahi hota
+pip install -e .          # stdlib only — nothing else to install
 prana-setup               # instant installer: API key + AI agents + channels
 prana --save-key          # sk-ant-… → Anthropic · AIza… → Gemini · sk-… → OpenAI
-prana --chat              # baat karo apne agent se
+prana --chat              # talk to your agent
 ```
 
 Bas. 4 commands me live agent. Details ke liye [install PDFs](#-install-guides--download-the-pdfs) dekho.
@@ -43,7 +43,7 @@ Telegram/WhatsApp/Discord, and does work while you're away.
 
 Architecture: [`SPEC.md`](SPEC.md) · Practical guide: [`docs/USAGE.md`](docs/USAGE.md)
 
-## ✅ Poora project — kya kya hai isme
+## ✅ What's inside
 
 **7 commands** — `prana` (chat CLI) · `prana-setup` (instant installer) ·
 `prana-mcp` (MCP server) · `prana-telegram` · `prana-whatsapp` ·
@@ -73,7 +73,7 @@ webhook HMAC verification · keys in `0600` config, never logged
 **Quality** — 291 tests passing · 8/8 scripted demo · zero dependencies ·
 ~10k lines of readable Python · MIT license
 
-### 🎬 Demo — ye aise kaam karta hai
+### 🎬 Demo — how it works
 
 ```console
 $ prana "remind me every morning at 9 to check the markets"
