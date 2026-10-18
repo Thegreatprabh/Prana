@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>PRANA — WhatsApp Setup Guide</title>
+<style>
+@page { size: A4; margin: 16mm 14mm 18mm 14mm;
+  @bottom-left { content: "PRANA 🫁 Setup Guides"; font-size: 8pt; color: #8b949e; font-family: "Segoe UI", sans-serif; }
+  @bottom-right { content: "Page " counter(page); font-size: 8pt; color: #8b949e; font-family: "Segoe UI", sans-serif; }
+}
+@page :first { margin: 0; @bottom-left { content: none; } @bottom-right { content: none; } }
+* { box-sizing: border-box; }
+body { font-family: "Segoe UI", system-ui, -apple-system, sans-serif; color: #1c2128; font-size: 10.5pt; line-height: 1.6; margin: 0; background: #fff; }
+/* ---------- COVER ---------- */
+.cover { width: 210mm; height: 296mm; background: radial-gradient(1200px 600px at 80% -10%, #12341f 0%, #0d1117 55%, #0d1117 100%); color: #f0f3f6; padding: 30mm 20mm 20mm 20mm; page-break-after: always; position: relative; overflow: hidden; }
+.cover::before { content: ""; position: absolute; top: -40mm; right: -30mm; width: 120mm; height: 120mm; border-radius: 50%; background: radial-gradient(circle, rgba(0,230,118,.18) 0%, transparent 70%); }
+.cover .kicker { display: inline-block; font-size: 10pt; letter-spacing: 3px; text-transform: uppercase; color: #00e676; border: 1px solid #00e676; border-radius: 20px; padding: 4px 16px; margin-bottom: 14mm; }
+.cover h1 { font-size: 40pt; line-height: 1.12; margin: 0 0 6mm 0; font-weight: 800; }
+.cover h1 .accent { color: #00e676; }
+.cover .sub { font-size: 14pt; color: #adbac7; max-width: 130mm; margin-bottom: 12mm; }
+.cover .meta { display: flex; gap: 8mm; margin-top: 10mm; }
+.cover .meta .pill { background: rgba(0,230,118,.1); border: 1px solid rgba(0,230,118,.35); border-radius: 10px; padding: 4mm 6mm; text-align: center; }
+.cover .meta .pill .v { font-size: 15pt; font-weight: 700; color: #00e676; }
+.cover .meta .pill .l { font-size: 8.5pt; color: #adbac7; }
+.cover .foot { position: absolute; bottom: 18mm; left: 20mm; right: 20mm; display: flex; justify-content: space-between; color: #636e7b; font-size: 9pt; border-top: 1px solid #222b33; padding-top: 5mm; }
+/* ---------- CONTENT ---------- */
+.brand { display: flex; align-items: center; gap: 3mm; font-weight: 700; font-size: 10pt; color: #0d1117; border-bottom: 3px solid #00e676; padding-bottom: 3mm; margin-bottom: 6mm; }
+.brand .tag { margin-left: auto; font-size: 8.5pt; font-weight: 600; color: #57606a; background: #eef1f4; padding: 1.5mm 4mm; border-radius: 12px; }
+h2 { font-size: 16pt; color: #0d1117; margin: 8mm 0 4mm 0; padding-bottom: 2mm; border-bottom: 2px solid #e6e9ee; }
+h2 .n { display: inline-block; background: #0d1117; color: #00e676; width: 8mm; height: 8mm; border-radius: 50%; text-align: center; line-height: 8mm; font-size: 11pt; margin-right: 2.5mm; }
+h3 { font-size: 12pt; color: #0d1117; margin: 5mm 0 2.5mm 0; }
+p, li { orphans: 3; widows: 3; }
+a { color: #0a7a3d; }
+/* TOC */
+.toc { background: #f6f8fa; border: 1px solid #d8dee4; border-radius: 8px; padding: 5mm 7mm; margin: 4mm 0 6mm 0; }
+.toc h3 { margin: 0 0 2mm 0; font-size: 11pt; }
+.toc ol { margin: 0; padding-left: 6mm; }
+.toc li { margin: 1.2mm 0; font-size: 10pt; }
+/* STEP CARDS */
+.step { border: 1px solid #d8dee4; border-radius: 10px; margin: 4.5mm 0; overflow: hidden; page-break-inside: avoid; }
+.step-head { display: flex; align-items: center; gap: 3.5mm; background: linear-gradient(90deg, #0d1117, #1a2330); color: #fff; padding: 3.2mm 5mm; }
+.step-num { flex: 0 0 auto; width: 9mm; height: 9mm; border-radius: 50%; background: #00e676; color: #0d1117; font-weight: 800; font-size: 12pt; text-align: center; line-height: 9mm; }
+.step-title { font-size: 12pt; font-weight: 700; }
+.step-tags { margin-left: auto; display: flex; gap: 2mm; }
+.step-body { padding: 4mm 5mm; background: #fff; }
+.step-body p:first-child { margin-top: 0; } .step-body p:last-child { margin-bottom: 0; }
+/* pills */
+.pill-auto, .pill-human { font-size: 8pt; font-weight: 700; letter-spacing: .4px; padding: 1.2mm 3mm; border-radius: 10px; white-space: nowrap; }
+.pill-auto { background: #dcfce7; color: #166534; border: 1px solid #86efac; }
+.pill-human { background: #fef3c7; color: #92400e; border: 1px solid #fcd34d; }
+/* TERMINAL */
+.terminal { background: #0d1117; border-radius: 8px; margin: 3mm 0; overflow: hidden; page-break-inside: avoid; }
+.terminal .tbar { display: flex; gap: 2mm; align-items: center; background: #1c2330; padding: 2.2mm 4mm; }
+.terminal .tbar i { width: 3mm; height: 3mm; border-radius: 50%; display: block; }
+.terminal .tbar .t { margin-left: 2mm; color: #8b949e; font-size: 8.5pt; font-family: Consolas, monospace; }
+.terminal pre { margin: 0; padding: 3.5mm 5mm; color: #c9f5d8; font-family: "Cascadia Code", Consolas, monospace; font-size: 9pt; line-height: 1.65; white-space: pre-wrap; word-break: break-word; }
+.terminal pre .p { color: #00e676; font-weight: 700; }
+.terminal pre .c { color: #7d8590; }
+.terminal pre .o { color: #9ecbff; }
+/* CALLOUTS */
+.callout { border-radius: 8px; padding: 3.5mm 5mm; margin: 3.5mm 0; font-size: 10pt; page-break-inside: avoid; }
+.callout .ch { font-weight: 800; font-size: 9.5pt; letter-spacing: .5px; text-transform: uppercase; margin-bottom: 1.5mm; }
+.callout.warn { background: #fffbeb; border-left: 5px solid #f59e0b; }
+.callout.warn .ch { color: #92400e; }
+.callout.info { background: #eff6ff; border-left: 5px solid #3b82f6; }
+.callout.info .ch { color: #1d4ed8; }
+.callout.tip { background: #f0fdf4; border-left: 5px solid #00c853; }
+.callout.tip .ch { color: #166534; }
+/* FLOW DIAGRAM */
+.flow { display: flex; align-items: stretch; justify-content: space-between; margin: 4mm 0; page-break-inside: avoid; }
+.fbox { flex: 1; background: #0d1117; color: #e6edf3; border: 1px solid #30363d; border-radius: 8px; padding: 3mm; text-align: center; font-size: 8.8pt; }
+.fbox b { display: block; color: #00e676; font-size: 9.5pt; margin-bottom: 1mm; }
+.fbox.human { background: #fffbeb; color: #1c2128; border: 1px solid #fcd34d; }
+.fbox.human b { color: #92400e; }
+.farrow { flex: 0 0 auto; align-self: center; color: #00c853; font-size: 16pt; font-weight: 800; padding: 0 1.5mm; }
+/* TABLES */
+table.ref, table.trouble { width: 100%; border-collapse: collapse; margin: 3mm 0; font-size: 9.5pt; page-break-inside: avoid; }
+table.ref th, table.trouble th { background: #0d1117; color: #00e676; text-align: left; padding: 2.5mm 3.5mm; font-size: 9pt; }
+table.ref td, table.trouble td { border: 1px solid #d8dee4; padding: 2.5mm 3.5mm; vertical-align: top; }
+table.ref tr:nth-child(even) td, table.trouble tr:nth-child(even) td { background: #f6f8fa; }
+code, .mono { font-family: "Cascadia Code", Consolas, monospace; font-size: 9pt; background: #eef1f4; padding: .5mm 1.5mm; border-radius: 4px; color: #0d1117; }
+table.trouble td:first-child { font-family: "Cascadia Code", Consolas, monospace; font-size: 8.8pt; color: #b42318; }
+/* checklist */
+.check { list-style: none; padding: 0; }
+.check li { padding: 1.5mm 0 1.5mm 8mm; position: relative; }
+.check li::before { content: "✅"; position: absolute; left: 0; }
+.legend { display: flex; gap: 6mm; margin: 3mm 0; font-size: 9.5pt; }
+.pagebreak { page-break-before: always; }
+.small { font-size: 9pt; color: #57606a; }
+.center { text-align: center; }
+</style>
+</head>
+<body>
+
+<!-- ================= COVER ================= -->
+<div class="cover">
+  <div class="kicker">PRANA 🫁 &nbsp;·&nbsp; Setup Guide</div>
+  <h1>PRANA on<br><span class="accent">WhatsApp</span></h1>
+  <p class="sub">Your autonomous AI brain, living inside the chat app you already use. Send it a message — it works with real tools and replies.</p>
+  <div class="meta">
+    <div class="pill"><div class="v">~15 min</div><div class="l">total setup</div></div>
+    <div class="pill"><div class="v">2 min</div><div class="l">your human steps</div></div>
+    <div class="pill"><div class="v">Windows</div><div class="l">first-class</div></div>
+  </div>
+  <div class="foot"><span>🫁 PRANA v0.1.0 — give any chatbot a life</span><span>Premium Setup Series · 1 of 5</span></div>
+</div>
+
+<!-- ================= CONTENT ================= -->
+<div class="brand">🫁 PRANA <span class="tag">WhatsApp Setup Guide</span></div>
+
+<div class="legend">
+  <span><span class="pill-auto">🤖 AUTOMATIC</span> — PRANA / installer does it</span>
+  <span><span class="pill-human">👆 YOUR 2-MIN STEP</span> — needs a human (account / browser)</span>
+</div>
+
+<div class="toc">
+  <h3>📑 Contents</h3>
+  <ol>
+    <li>What you're building</li>
+    <li>How the pieces fit (flow diagram)</li>
+    <li>Step 1 — Install PRANA</li>
+    <li>Step 2 — Save your AI key</li>
+    <li>Step 3 — Create the Meta developer app <span class="pill-human">👆 YOUR STEP</span></li>
+    <li>Step 4 — Copy your WhatsApp credentials <span class="pill-human">👆 YOUR STEP</span></li>
+    <li>Step 5 — Give PRANA the credentials</li>
+    <li>Step 6 — Start the WhatsApp listener</li>
+    <li>Step 7 — Open a tunnel to the internet <span class="pill-human">👆 YOUR STEP</span></li>
+    <li>Step 8 — Connect the Meta webhook <span class="pill-human">👆 YOUR STEP</span></li>
+    <li>Verify it works ✅</li>
+    <li>Troubleshooting</li>
+    <li>Quick reference</li>
+  </ol>
+</div>
+
+<h2><span class="n">◈</span>What you're building</h2>
+<p>After this guide, <b>PRANA lives on WhatsApp</b>: you message it like a contact, it runs its full brain (ReAct loop, shell/files/web tools, memory), and replies in the chat. It uses the <b>Meta WhatsApp Business Cloud API</b> — official, free tier, no shady bridges, no ban risk.</p>
+
+<h2><span class="n">◈</span>How the pieces fit</h2>
+<div class="flow">
+  <div class="fbox human"><b>👆 Meta App</b>developers.facebook.com<br>token + phone ID</div><div class="farrow">→</div>
+  <div class="fbox"><b>prana-whatsapp</b>local webhook<br>listener :8000</div><div class="farrow">→</div>
+  <div class="fbox human"><b>👆 Tunnel</b>ngrok / cloudflared<br>public HTTPS URL</div><div class="farrow">→</div>
+  <div class="fbox human"><b>👆 Webhook</b>Meta → your tunnel<br>on new messages</div><div class="farrow">→</div>
+  <div class="fbox"><b>💬 You</b>chat normally<br>PRANA replies</div>
+</div>
+<div class="callout info"><div class="ch">ℹ️ Why a tunnel?</div>Meta's servers must <i>reach</i> your machine to deliver messages. Your laptop isn't publicly visible, so a tunnel (ngrok / cloudflared) gives it a temporary public HTTPS address. This is the standard pattern — nothing PRANA-specific.</div>
+
+<!-- STEP 1 -->
+<div class="step">
+  <div class="step-head"><div class="step-num">1</div><div class="step-title">Install PRANA</div><div class="step-tags"><span class="pill-auto">🤖 AUTOMATIC</span></div></div>
+  <div class="step-body">
+    <p>Open <b>PowerShell</b> (or Command Prompt) and run:</p>
+    <div class="terminal"><div class="tbar"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i><span class="t">PowerShell</span></div><pre><span class="p">$</span> git clone https://github.com/Thegreatprabh/Prana.git
+<span class="p">$</span> cd Prana
+<span class="p">$</span> python -m pip install -e .
+<span class="c"># use `python -m pip` (not bare `pip`) — on some machines they point to different Pythons</span></pre></div>
+    <div class="callout tip"><div class="ch">💡 Tip</div>Need Python 3.10+. Check with <code>python --version</code>. PRANA is <b>stdlib-only</b> — zero dependencies, nothing else to install.</div>
+  </div>
+</div>
+
+<!-- STEP 2 -->
+<div class="step">
+  <div class="step-head"><div class="step-num">2</div><div class="step-title">Save your AI key (BYOK)</div><div class="step-tags"><span class="pill-auto">🤖 AUTOMATIC</span></div></div>
+  <div class="step-body">
+    <p>PRANA uses <b>your own</b> API key — OpenAI, Anthropic, or Gemini. It's stored at <code>%USERPROFILE%\.prana\config.json</code> with locked-down permissions, never logged.</p>
+    <div class="terminal"><div class="tbar"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i><span class="t">PowerShell</span></div><pre><span class="p">$</span> prana --save-key
+<span class="o">Paste API key (hidden): ••••••••••••</span>
+<span class="o">API key saved for openai → C:\Users\YOU\.prana\config.json (0600)</span></pre></div>
+    <p class="small">The provider is auto-detected from the key prefix (<code>sk-ant-</code> → Anthropic, <code>AIza</code> → Gemini, <code>sk-</code> → OpenAI).</p>
+  </div>
+</div>
+
+<!-- STEP 3 -->
+<div class="step">
+  <div class="step-head"><div class="step-num">3</div><div class="step-title">Create the Meta developer app</div><div class="step-tags"><span class="pill-human">👆 YOUR 2-MIN STEP</span></div></div>
+  <div class="step-body">
+    <p>Meta needs to know <i>your</i> app exists — this part needs a human with a browser (about 2 minutes, free):</p>
+    <ol>
+      <li>Go to <b>developers.facebook.com</b> → <b>My Apps</b> → <b>Create App</b></li>
+      <li>Choose type <b>Business</b> → name it (e.g. <i>PRANA</i>) → Create</li>
+      <li>In the app dashboard: <b>Add Product</b> → find <b>WhatsApp</b> → <b>Set up</b></li>
+    </ol>
+    <div class="callout warn"><div class="ch">⚠️ Heads-up</div>You may need to verify a phone number for the test WhatsApp Business number Meta gives you. It's part of their free sandbox — no charges.</div>
+  </div>
+</div>
+
+<!-- STEP 4 -->
+<div class="step">
+  <div class="step-head"><div class="step-num">4</div><div class="step-title">Copy your WhatsApp credentials</div><div class="step-tags"><span class="pill-human">👆 YOUR 2-MIN STEP</span></div></div>
+  <div class="step-body">
+    <p>In your Meta app: <b>WhatsApp → API Setup</b>. Copy these two values:</p>
+    <table class="ref">
+      <tr><th>What</th><th>Where</th><th>PRANA name</th></tr>
+      <tr><td><b>Temporary access token</b></td><td>"Temporary access token" field (copy now — it expires in 24h)</td><td><code>WHATSAPP_TOKEN</code></td></tr>
+      <tr><td><b>Phone number ID</b></td><td>"Phone number ID" under the test number</td><td><code>WHATSAPP_PHONE_NUMBER_ID</code></td></tr>
+    </table>
+    <div class="callout tip"><div class="ch">💡 Going permanent</div>The temporary token expires in ~24 hours — fine for testing. For always-on use: <b>Business Settings → System Users → Add</b> → assign the <code>whatsapp_business_messaging</code> permission → generate a permanent token. Same variable, longer life.</div>
+  </div>
+</div>
+
+<!-- STEP 5 -->
+<div class="step">
+  <div class="step-head"><div class="step-num">5</div><div class="step-title">Give PRANA the credentials</div><div class="step-tags"><span class="pill-auto">🤖 AUTOMATIC</span></div></div>
+  <div class="step-body">
+    <p><b>Recommended (persistent):</b> add a <code>whatsapp</code> section to <code>%USERPROFILE%\.prana\config.json</code>. Pick any secret string as your verify token — you'll paste the same value into Meta in Step 8.</p>
+    <div class="terminal"><div class="tbar"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i><span class="t">%USERPROFILE%\.prana\config.json</span></div><pre>{
+  <span class="p">"whatsapp"</span>: {
+    <span class="p">"token"</span>: <span class="o">"EAAB...paste-your-token..."</span>,
+    <span class="p">"phone_number_id"</span>: <span class="o">"123456789012345"</span>,
+    <span class="p">"verify_token"</span>: <span class="o">"prana-secret-123"</span>
+  }
+}</pre></div>
+    <p class="small">Alternative (this terminal session only): <code>$env:WHATSAPP_TOKEN="..."</code>, <code>$env:WHATSAPP_PHONE_NUMBER_ID="..."</code>, <code>$env:WHATSAPP_VERIFY_TOKEN="..."</code> in PowerShell.</p>
+  </div>
+</div>
+
+<!-- STEP 6 -->
+<div class="step">
+  <div class="step-head"><div class="step-num">6</div><div class="step-title">Start the WhatsApp listener</div><div class="step-tags"><span class="pill-auto">🤖 AUTOMATIC</span></div></div>
+  <div class="step-body">
+    <div class="terminal"><div class="tbar"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i><span class="t">PowerShell</span></div><pre><span class="p">$</span> prana-whatsapp --port 8000
+<span class="o">💬 PRANA listening for WhatsApp on 127.0.0.1:8000/webhook — Ctrl+C to stop
+Next: expose this listener publicly (ngrok/cloudflared) and set the Meta app
+webhook Callback URL to https://&lt;your-tunnel&gt;/webhook (subscribe: messages).</span></pre></div>
+    <p>Leave this window running. Open a <b>second</b> terminal for the next step.</p>
+  </div>
+</div>
+
+<!-- STEP 7 -->
+<div class="pagebreak"></div>
+<div class="brand">🫁 PRANA <span class="tag">WhatsApp Setup Guide</span></div>
+<div class="step">
+  <div class="step-head"><div class="step-num">7</div><div class="step-title">Open a tunnel to the internet</div><div class="step-tags"><span class="pill-human">👆 YOUR 2-MIN STEP</span></div></div>
+  <div class="step-body">
+    <p>In the second terminal, run one of these (pick whichever you have):</p>
+    <div class="terminal"><div class="tbar"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i><span class="t">PowerShell — terminal 2</span></div><pre><span class="p">$</span> ngrok http 8000
+<span class="c"># → copy the https URL, e.g. https://a1b2-c3d4.ngrok-free.app</span>
+<span class="c"># — or —</span>
+<span class="p">$</span> cloudflared tunnel --url http://localhost:8000
+<span class="c"># → copy the https URL, e.g. https://random-words.trycloudflare.com</span></pre></div>
+    <div class="callout warn"><div class="ch">⚠️ Free tunnels rotate</div>Free ngrok/cloudflared URLs <b>change every restart</b>. Each time the URL changes, repeat Step 8 with the new URL. (Paid ngrok gives a fixed domain.)</div>
+  </div>
+</div>
+
+<!-- STEP 8 -->
+<div class="step">
+  <div class="step-head"><div class="step-num">8</div><div class="step-title">Connect the Meta webhook</div><div class="step-tags"><span class="pill-human">👆 YOUR 2-MIN STEP</span></div></div>
+  <div class="step-body">
+    <p>Back in <b>developers.facebook.com → your app → WhatsApp → Configuration</b>:</p>
+    <ol>
+      <li><b>Callback URL:</b> <code>https://&lt;your-tunnel-url&gt;/webhook</code></li>
+      <li><b>Verify token:</b> the exact string from Step 5 (<code>prana-secret-123</code>)</li>
+      <li>Click <b>Verify and Save</b> — Meta calls your listener; PRANA answers the handshake automatically</li>
+      <li>In <b>Webhook fields</b>, click <b>Manage</b> → subscribe to <b><code>messages</code></b></li>
+    </ol>
+    <div class="callout tip"><div class="ch">💡 What success looks like</div>Your <code>prana-whatsapp</code> terminal prints <code>whatsapp: webhook verified</code>. Meta shows a green checkmark on the webhook.</div>
+  </div>
+</div>
+
+<h2><span class="n">✓</span>Verify it works</h2>
+<ul class="check">
+  <li>Send a WhatsApp message to the test number from your phone</li>
+  <li>PRANA replies in the chat (first message may take a few seconds — it's thinking)</li>
+  <li>Try <code>help</code> → command list, and a real task like <i>"summarize what you can do"</i></li>
+  <li>Conversation history is per-number — it remembers your thread</li>
+</ul>
+
+<div class="pagebreak"></div>
+<div class="brand">🫁 PRANA <span class="tag">WhatsApp Setup Guide</span></div>
+<h2><span class="n">✚</span>Troubleshooting</h2>
+<table class="trouble">
+  <tr><th style="width:42%">Error / symptom</th><th>Fix</th></tr>
+  <tr><td>error: no WhatsApp token — set WHATSAPP_TOKEN…</td><td>Token not found. Check the <code>whatsapp.token</code> value in config.json, or the <code>WHATSAPP_TOKEN</code> env var in the <i>same</i> terminal.</td></tr>
+  <tr><td>error: no WhatsApp phone_number_id…</td><td>Copy "Phone number ID" from Meta app → WhatsApp → API Setup (it's the numeric ID, not the phone number).</td></tr>
+  <tr><td>warning: no webhook verify token set…</td><td>Set <code>WHATSAPP_VERIFY_TOKEN</code> — without it Meta's verification rejects everything.</td></tr>
+  <tr><td>Meta: webhook verification failed (403)</td><td>Verify-token mismatch. The string in Meta's dashboard must <b>exactly</b> equal your <code>verify_token</code>.</td></tr>
+  <tr><td>Messages sent, nothing arrives</td><td>Tunnel URL changed? Update the Callback URL. Also confirm you subscribed to the <code>messages</code> webhook field, and the sender is an allowed test recipient.</td></tr>
+  <tr><td>PRANA replies, then Meta retries duplicates</td><td>Your listener must answer POSTs with 200 fast — PRANA does this by design (agent failures are logged, never retried).</td></tr>
+  <tr><td>Temporary token stopped working</td><td>It expires in ~24h. Generate a permanent system-user token (Step 4 tip).</td></tr>
+</table>
+<div class="callout info"><div class="ch">ℹ️ Honest Meta rule</div>WhatsApp Business only lets <i>you</i> start conversations freely. If PRANA pings you proactively after 24h of silence, Meta requires a pre-approved message template. Replies inside an active chat are always free.</div>
+
+<h2><span class="n">◈</span>Quick reference</h2>
+<table class="ref">
+  <tr><th>Item</th><th>Value</th></tr>
+  <tr><td>Start listener</td><td><code>prana-whatsapp --port 8000</code></td></tr>
+  <tr><td>Webhook path</td><td><code>/webhook</code> (customize: <code>--webhook-path</code>)</td></tr>
+  <tr><td>Env vars</td><td><code>WHATSAPP_TOKEN</code> · <code>WHATSAPP_PHONE_NUMBER_ID</code> · <code>WHATSAPP_VERIFY_TOKEN</code></td></tr>
+  <tr><td>Config file</td><td><code>%USERPROFILE%\.prana\config.json</code> → <code>"whatsapp": {...}</code></td></tr>
+  <tr><td>Cloud API</td><td><code>https://graph.facebook.com/v22.0</code></td></tr>
+  <tr><td>Message limit</td><td>4000 chars per message (auto-chunked)</td></tr>
+  <tr><td>Local commands</td><td><code>start</code> · <code>help</code> (answered instantly, zero tokens)</td></tr>
+</table>
+<p class="center small" style="margin-top:8mm">🫁 PRANA v0.1.0 · MIT License · github.com/Thegreatprabh/Prana</p>
+
+</body>
+</html>
