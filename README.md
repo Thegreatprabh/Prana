@@ -18,16 +18,18 @@ your own API key. **Stdlib-only Python. Zero dependencies.**
 
 </div>
 
-```console
-$ pip install -e .
-$ prana-setup                      # one shot: key + agents + channels
-$ prana --save-key                  # OpenAI / Anthropic / Gemini (auto-detected)
-$ prana "summarize this repo and remember that I prefer Hinglish"
+## 📦 Installation
+
+```bash
+git clone https://github.com/Thegreatprabh/Prana
+cd Prana
+pip install -e .          # stdlib only — kuch aur install nahi hota
+prana-setup               # instant installer: API key + AI agents + channels
+prana --save-key          # sk-ant-… → Anthropic · AIza… → Gemini · sk-… → OpenAI
+prana --chat              # baat karo apne agent se
 ```
 
-![demo](assets/demo-terminal.svg)
-
----
+Bas. 4 commands me live agent. Details ke liye [install PDFs](#-install-guides--download-the-pdfs) dekho.
 
 ## 🫁 What is PRANA?
 
@@ -40,6 +42,51 @@ autonomous agent that lives on your machine, remembers you, pings you on
 Telegram/WhatsApp/Discord, and does work while you're away.
 
 Architecture: [`SPEC.md`](SPEC.md) · Practical guide: [`docs/USAGE.md`](docs/USAGE.md)
+
+## ✅ Poora project — kya kya hai isme
+
+**7 commands** — `prana` (chat CLI) · `prana-setup` (instant installer) ·
+`prana-mcp` (MCP server) · `prana-telegram` · `prana-whatsapp` ·
+`prana-discord` · `prana-daemon` (proactive background runner)
+
+**4 channels, two-way bots** — Telegram (+ voice notes: Whisper STT + TTS) ·
+WhatsApp (Meta Cloud API + webhook) · Discord (custom-built gateway, no
+discord.py needed)
+
+**MCP server (5 tools)** — `prana_chat` · `prana_remember` · `prana_recall` ·
+`prana_schedule` · `prana_jobs` → plugs into Claude Code, Claude Desktop,
+Cursor, ChatGPT Desktop, Gemini CLI via `prana-setup --agents`
+
+**Memory** — `MEMORY.md` + per-person notes + daily log + TF-IDF recall
+(credential-like writes **refused**) · **4 personality modes**
+(casual/teacher/engineer/strategist) · **BYOK** (OpenAI/Anthropic/Gemini,
+auto-detected from key)
+
+**Proactivity** — cron jobs · file-watch hooks · background worker pool ·
+delivery rules (`[NOTIFY]`/`[URGENT]` markers, change-detection, silent on
+no-change)
+
+**Safety** — channel pairing (first sender = owner, strangers ignored) ·
+`schedule` always asks approval (no auto-approve flag) · SSRF blocklist ·
+webhook HMAC verification · keys in `0600` config, never logged
+
+**Quality** — 291 tests passing · 8/8 scripted demo · zero dependencies ·
+~10k lines of readable Python · MIT license
+
+### 🎬 Demo — ye aise kaam karta hai
+
+```console
+$ prana "remind me every morning at 9 to check the markets"
+
+🤔 I'll create a scheduled job for that.
+🔧 schedule(name="morning-markets", schedule="0 9 * * *", ...)
+⚠️  IRREVERSIBLE tool 'schedule' — Approve? [y/N] y
+✅ Job created. The daemon will run it every morning at 9.
+
+$ prana-daemon &
+# ... next morning, 9:00 AM ...
+📩 Telegram: "Morning! Nifty is at 25,410 (+0.4%). Your watchlist: ..."
+```
 
 ![divider](assets/divider.svg)
 
@@ -181,19 +228,6 @@ OpenClaw is the more mature project today — no false claims here. PRANA's bet:
 **radical simplicity**. Zero dependencies, one readable codebase, pairing-first
 safety, and an architecture you can understand in an afternoon and hack on by
 evening.
-
-## 🚀 Quickstart
-
-```bash
-git clone https://github.com/Thegreatprabh/Prana
-cd Prana
-pip install -e .          # stdlib only — nothing else to install
-prana-setup               # instant installer: key + agents + channels
-prana --save-key          # sk-ant-… → Anthropic · AIza… → Gemini · sk-… → OpenAI
-prana --chat              # talk to it
-prana --mode teacher --chat
-prana "summarize this repo"
-```
 
 ## 🔍 Verify it yourself
 
