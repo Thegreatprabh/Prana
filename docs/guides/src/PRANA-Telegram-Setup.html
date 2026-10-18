@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>PRANA — Telegram Setup Guide</title>
+<style>
+@page { size: A4; margin: 16mm 14mm 18mm 14mm;
+  @bottom-left { content: "PRANA 🫁 Setup Guides"; font-size: 8pt; color: #8b949e; font-family: "Segoe UI", sans-serif; }
+  @bottom-right { content: "Page " counter(page); font-size: 8pt; color: #8b949e; font-family: "Segoe UI", sans-serif; }
+}
+@page :first { margin: 0; @bottom-left { content: none; } @bottom-right { content: none; } }
+* { box-sizing: border-box; }
+body { font-family: "Segoe UI", system-ui, -apple-system, sans-serif; color: #1c2128; font-size: 10.5pt; line-height: 1.6; margin: 0; background: #fff; }
+.cover { width: 210mm; height: 296mm; background: radial-gradient(1200px 600px at 80% -10%, #0e3a5c 0%, #0d1117 55%, #0d1117 100%); color: #f0f3f6; padding: 30mm 20mm 20mm 20mm; page-break-after: always; position: relative; overflow: hidden; }
+.cover::before { content: ""; position: absolute; top: -40mm; right: -30mm; width: 120mm; height: 120mm; border-radius: 50%; background: radial-gradient(circle, rgba(41,171,226,.22) 0%, transparent 70%); }
+.cover .kicker { display: inline-block; font-size: 10pt; letter-spacing: 3px; text-transform: uppercase; color: #29a9e2; border: 1px solid #29a9e2; border-radius: 20px; padding: 4px 16px; margin-bottom: 14mm; }
+.cover h1 { font-size: 40pt; line-height: 1.12; margin: 0 0 6mm 0; font-weight: 800; }
+.cover h1 .accent { color: #29a9e2; }
+.cover .sub { font-size: 14pt; color: #adbac7; max-width: 130mm; margin-bottom: 12mm; }
+.cover .meta { display: flex; gap: 8mm; margin-top: 10mm; }
+.cover .meta .pill { background: rgba(41,171,226,.1); border: 1px solid rgba(41,171,226,.35); border-radius: 10px; padding: 4mm 6mm; text-align: center; }
+.cover .meta .pill .v { font-size: 15pt; font-weight: 700; color: #29a9e2; }
+.cover .meta .pill .l { font-size: 8.5pt; color: #adbac7; }
+.cover .foot { position: absolute; bottom: 18mm; left: 20mm; right: 20mm; display: flex; justify-content: space-between; color: #636e7b; font-size: 9pt; border-top: 1px solid #222b33; padding-top: 5mm; }
+.brand { display: flex; align-items: center; gap: 3mm; font-weight: 700; font-size: 10pt; color: #0d1117; border-bottom: 3px solid #29a9e2; padding-bottom: 3mm; margin-bottom: 6mm; }
+.brand .tag { margin-left: auto; font-size: 8.5pt; font-weight: 600; color: #57606a; background: #eef1f4; padding: 1.5mm 4mm; border-radius: 12px; }
+h2 { font-size: 16pt; color: #0d1117; margin: 8mm 0 4mm 0; padding-bottom: 2mm; border-bottom: 2px solid #e6e9ee; }
+h2 .n { display: inline-block; background: #0d1117; color: #29a9e2; width: 8mm; height: 8mm; border-radius: 50%; text-align: center; line-height: 8mm; font-size: 11pt; margin-right: 2.5mm; }
+h3 { font-size: 12pt; color: #0d1117; margin: 5mm 0 2.5mm 0; }
+p, li { orphans: 3; widows: 3; }
+.toc { background: #f6f8fa; border: 1px solid #d8dee4; border-radius: 8px; padding: 5mm 7mm; margin: 4mm 0 6mm 0; }
+.toc h3 { margin: 0 0 2mm 0; font-size: 11pt; }
+.toc ol { margin: 0; padding-left: 6mm; }
+.toc li { margin: 1.2mm 0; font-size: 10pt; }
+.step { border: 1px solid #d8dee4; border-radius: 10px; margin: 4.5mm 0; overflow: hidden; page-break-inside: avoid; }
+.step-head { display: flex; align-items: center; gap: 3.5mm; background: linear-gradient(90deg, #0d1117, #14324a); color: #fff; padding: 3.2mm 5mm; }
+.step-num { flex: 0 0 auto; width: 9mm; height: 9mm; border-radius: 50%; background: #29a9e2; color: #fff; font-weight: 800; font-size: 12pt; text-align: center; line-height: 9mm; }
+.step-title { font-size: 12pt; font-weight: 700; }
+.step-tags { margin-left: auto; display: flex; gap: 2mm; }
+.step-body { padding: 4mm 5mm; background: #fff; }
+.step-body p:first-child { margin-top: 0; } .step-body p:last-child { margin-bottom: 0; }
+.pill-auto, .pill-human { font-size: 8pt; font-weight: 700; letter-spacing: .4px; padding: 1.2mm 3mm; border-radius: 10px; white-space: nowrap; }
+.pill-auto { background: #dcfce7; color: #166534; border: 1px solid #86efac; }
+.pill-human { background: #fef3c7; color: #92400e; border: 1px solid #fcd34d; }
+.terminal { background: #0d1117; border-radius: 8px; margin: 3mm 0; overflow: hidden; page-break-inside: avoid; }
+.terminal .tbar { display: flex; gap: 2mm; align-items: center; background: #1c2330; padding: 2.2mm 4mm; }
+.terminal .tbar i { width: 3mm; height: 3mm; border-radius: 50%; display: block; }
+.terminal .tbar .t { margin-left: 2mm; color: #8b949e; font-size: 8.5pt; font-family: Consolas, monospace; }
+.terminal pre { margin: 0; padding: 3.5mm 5mm; color: #c9e8f5; font-family: "Cascadia Code", Consolas, monospace; font-size: 9pt; line-height: 1.65; white-space: pre-wrap; word-break: break-word; }
+.terminal pre .p { color: #29a9e2; font-weight: 700; }
+.terminal pre .c { color: #7d8590; }
+.terminal pre .o { color: #9ecbff; }
+.callout { border-radius: 8px; padding: 3.5mm 5mm; margin: 3.5mm 0; font-size: 10pt; page-break-inside: avoid; }
+.callout .ch { font-weight: 800; font-size: 9.5pt; letter-spacing: .5px; text-transform: uppercase; margin-bottom: 1.5mm; }
+.callout.warn { background: #fffbeb; border-left: 5px solid #f59e0b; }
+.callout.warn .ch { color: #92400e; }
+.callout.info { background: #eff6ff; border-left: 5px solid #3b82f6; }
+.callout.info .ch { color: #1d4ed8; }
+.callout.tip { background: #f0fdf4; border-left: 5px solid #00c853; }
+.callout.tip .ch { color: #166534; }
+.flow { display: flex; align-items: stretch; justify-content: space-between; margin: 4mm 0; page-break-inside: avoid; }
+.fbox { flex: 1; background: #0d1117; color: #e6edf3; border: 1px solid #30363d; border-radius: 8px; padding: 3mm; text-align: center; font-size: 8.8pt; }
+.fbox b { display: block; color: #29a9e2; font-size: 9.5pt; margin-bottom: 1mm; }
+.fbox.human { background: #fffbeb; color: #1c2128; border: 1px solid #fcd34d; }
+.fbox.human b { color: #92400e; }
+.farrow { flex: 0 0 auto; align-self: center; color: #29a9e2; font-size: 16pt; font-weight: 800; padding: 0 1.5mm; }
+table.ref, table.trouble { width: 100%; border-collapse: collapse; margin: 3mm 0; font-size: 9.5pt; page-break-inside: avoid; }
+table.ref th, table.trouble th { background: #0d1117; color: #29a9e2; text-align: left; padding: 2.5mm 3.5mm; font-size: 9pt; }
+table.ref td, table.trouble td { border: 1px solid #d8dee4; padding: 2.5mm 3.5mm; vertical-align: top; }
+table.ref tr:nth-child(even) td, table.trouble tr:nth-child(even) td { background: #f6f8fa; }
+code, .mono { font-family: "Cascadia Code", Consolas, monospace; font-size: 9pt; background: #eef1f4; padding: .5mm 1.5mm; border-radius: 4px; color: #0d1117; }
+table.trouble td:first-child { font-family: "Cascadia Code", Consolas, monospace; font-size: 8.8pt; color: #b42318; }
+.check { list-style: none; padding: 0; }
+.check li { padding: 1.5mm 0 1.5mm 8mm; position: relative; }
+.check li::before { content: "✅"; position: absolute; left: 0; }
+.legend { display: flex; gap: 6mm; margin: 3mm 0; font-size: 9.5pt; }
+.pagebreak { page-break-before: always; }
+.small { font-size: 9pt; color: #57606a; }
+.center { text-align: center; }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="kicker">PRANA 🫁 &nbsp;·&nbsp; Setup Guide</div>
+  <h1>PRANA on<br><span class="accent">Telegram</span></h1>
+  <p class="sub">The fastest way to put PRANA in your pocket. Two minutes, one bot token, zero tunnels — Telegram polls <i>you</i>.</p>
+  <div class="meta">
+    <div class="pill"><div class="v">~2 min</div><div class="l">total setup</div></div>
+    <div class="pill"><div class="v">1 step</div><div class="l">your human step</div></div>
+    <div class="pill"><div class="v">Windows</div><div class="l">first-class</div></div>
+  </div>
+  <div class="foot"><span>🫁 PRANA v0.1.0 — give any chatbot a life</span><span>Premium Setup Series · 3 of 5</span></div>
+</div>
+
+<div class="brand">🫁 PRANA <span class="tag">Telegram Setup Guide</span></div>
+
+<div class="legend">
+  <span><span class="pill-auto">🤖 AUTOMATIC</span> — PRANA / installer does it</span>
+  <span><span class="pill-human">👆 YOUR 2-MIN STEP</span> — needs a human (account / browser)</span>
+</div>
+
+<div class="toc">
+  <h3>📑 Contents</h3>
+  <ol>
+    <li>What you're building</li>
+    <li>How the pieces fit (flow diagram)</li>
+    <li>Step 1 — Install PRANA &amp; save your AI key</li>
+    <li>Step 2 — Create your bot with @BotFather <span class="pill-human">👆 YOUR STEP</span></li>
+    <li>Step 3 — Give PRANA the bot token</li>
+    <li>Step 4 — Start polling</li>
+    <li>Step 5 — Proactive pings (the "alive" part)</li>
+    <li>Verify it works ✅</li>
+    <li>Troubleshooting</li>
+    <li>Quick reference</li>
+  </ol>
+</div>
+
+<h2><span class="n">◈</span>What you're building</h2>
+<p>After this guide, <b>PRANA is a Telegram bot on your phone</b>: chat with it, give it tasks, and — the real magic — it can <b>message you first</b> when scheduled jobs finish. No tunnel needed: Telegram's Bot API is polled from your machine.</p>
+
+<h2><span class="n">◈</span>How the pieces fit</h2>
+<div class="flow">
+  <div class="fbox human"><b>👆 @BotFather</b>create bot<br>copy token</div><div class="farrow">→</div>
+  <div class="fbox"><b>prana-telegram</b>long-polls<br>Telegram API</div><div class="farrow">→</div>
+  <div class="fbox"><b>🧠 Brain</b>thinks with<br>tools + memory</div><div class="farrow">→</div>
+  <div class="fbox"><b>💬 You</b>chat normally<br>/start · /help</div><div class="farrow">→</div>
+  <div class="fbox"><b>⚡ Proactive</b>daemon pings you<br>on job results</div>
+</div>
+
+<div class="step">
+  <div class="step-head"><div class="step-num">1</div><div class="step-title">Install PRANA &amp; save your AI key</div><div class="step-tags"><span class="pill-auto">🤖 AUTOMATIC</span></div></div>
+  <div class="step-body">
+    <div class="terminal"><div class="tbar"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i><span class="t">PowerShell</span></div><pre><span class="p">$</span> git clone https://github.com/Thegreatprabh/Prana.git
+<span class="p">$</span> cd Prana
+<span class="p">$</span> python -m pip install -e .
+<span class="p">$</span> prana --save-key
+<span class="o">Paste API key (hidden): ••••••••••••</span></pre></div>
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-head"><div class="step-num">2</div><div class="step-title">Create your bot with @BotFather</div><div class="step-tags"><span class="pill-human">👆 YOUR 2-MIN STEP</span></div></div>
+  <div class="step-body">
+    <p>On your phone, in Telegram:</p>
+    <ol>
+      <li>Open a chat with <b>@BotFather</b> → send <code>/newbot</code></li>
+      <li>Pick a <b>display name</b> (e.g. <i>PRANA</i>)</li>
+      <li>Pick a <b>username</b> ending in <code>bot</code> (e.g. <i>my_prana_bot</i>)</li>
+      <li>BotFather replies with your <b>token</b> — long string like <code>123456:ABC-DEF…</code>. Copy it.</li>
+    </ol>
+    <div class="callout tip"><div class="ch">💡 Tip</div>Token leaked or shared by accident? <code>/revoke</code> in @BotFather instantly kills it and issues a new one.</div>
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-head"><div class="step-num">3</div><div class="step-title">Give PRANA the bot token</div><div class="step-tags"><span class="pill-auto">🤖 AUTOMATIC</span></div></div>
+  <div class="step-body">
+    <p><b>Recommended (persistent):</b> add to <code>%USERPROFILE%\.prana\config.json</code>:</p>
+    <div class="terminal"><div class="tbar"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i><span class="t">%USERPROFILE%\.prana\config.json</span></div><pre>{
+  <span class="p">"telegram"</span>: { <span class="p">"bot_token"</span>: <span class="o">"123456:ABC-DEF...paste..."</span> }
+}</pre></div>
+    <p class="small">Alternative (this session only): <code>$env:TELEGRAM_BOT_TOKEN="..."</code> in PowerShell. The token is never logged — error paths name the method, never the URL.</p>
+  </div>
+</div>
+
+<div class="pagebreak"></div>
+<div class="brand">🫁 PRANA <span class="tag">Telegram Setup Guide</span></div>
+
+<div class="step">
+  <div class="step-head"><div class="step-num">4</div><div class="step-title">Start polling</div><div class="step-tags"><span class="pill-auto">🤖 AUTOMATIC</span></div></div>
+  <div class="step-body">
+    <div class="terminal"><div class="tbar"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i><span class="t">PowerShell</span></div><pre><span class="p">$</span> prana-telegram
+<span class="o">🤖 connected as @my_prana_bot (PRANA) — polling
+📲 PRANA listening on Telegram — Ctrl+C to stop</span></pre></div>
+    <p>The <code>getMe</code> handshake validates your token at startup — a bad token fails fast with a clean error, never a hang.</p>
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-head"><div class="step-num">5</div><div class="step-title">Proactive pings — the "alive" part 🫁</div><div class="step-tags"><span class="pill-auto">🤖 AUTOMATIC</span></div></div>
+  <div class="step-body">
+    <p>This is what makes PRANA different from a chatbot: it <b>messages you first</b>.</p>
+    <ol>
+      <li>Message <b>@userinfobot</b> on Telegram → it replies with your numeric <b>chat id</b></li>
+      <li>Schedule a job targeting it (from any PRANA chat, or via the <code>schedule</code> tool):</li>
+    </ol>
+    <div class="terminal"><div class="tbar"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i><span class="t">PRANA chat</span></div><pre><span class="p">you:</span> schedule a job "morning-brief" every day at 8am: summarize the top tech news. Send it to telegram:987654321
+<span class="o">scheduled 'morning-brief' → job id 27e8f0a2…  delivery: telegram:987654321</span></pre></div>
+    <p>Run <code>prana-daemon</code> alongside <code>prana-telegram</code>: the daemon runs due jobs, the delivery decision filters noise, and real changes land on your phone. Unchanged results stay silent — <b>no spam, ever</b>.</p>
+  </div>
+</div>
+
+<h2><span class="n">✓</span>Verify it works</h2>
+<ul class="check">
+  <li>Open your bot in Telegram → <code>/start</code> → intro message arrives</li>
+  <li><code>/help</code> → command list (answered locally — zero tokens spent)</li>
+  <li>Send a task: <i>"summarize what you can do"</i> → real answer</li>
+  <li>Schedule a test ping (Step 5) → message arrives without you asking</li>
+</ul>
+
+<div class="pagebreak"></div>
+<div class="brand">🫁 PRANA <span class="tag">Telegram Setup Guide</span></div>
+<h2><span class="n">✚</span>Troubleshooting</h2>
+<table class="trouble">
+  <tr><th style="width:42%">Error / symptom</th><th>Fix</th></tr>
+  <tr><td>error: no Telegram bot token — set TELEGRAM_BOT_TOKEN…</td><td>Token not found. Check <code>telegram.bot_token</code> in config.json or the <code>TELEGRAM_BOT_TOKEN</code> env var in the <i>same</i> terminal.</td></tr>
+  <tr><td>error: bot token rejected by Telegram</td><td>Wrong or revoked token. @BotFather → <code>/revoke</code> → copy the new token.</td></tr>
+  <tr><td>409 Conflict on getUpdates</td><td>Another instance is polling with the same token (old terminal still running?). Kill the duplicate — only one poller per bot.</td></tr>
+  <tr><td>Bot ignores group messages</td><td>Group privacy mode. @BotFather → <code>/setprivacy</code> → <b>Disable</b>, or mention the bot explicitly.</td></tr>
+  <tr><td>Long replies arrive in pieces</td><td>Normal — Telegram caps messages at 4000 chars; PRANA chunks losslessly, preferring paragraph breaks.</td></tr>
+</table>
+<div class="callout info"><div class="ch">ℹ️ Built-in resilience</div>One bad update never kills the listener. Offsets persist in <code>~/.prana/telegram.json</code>, so restarts don't re-process old messages. <code>/start</code> and <code>/help</code> are answered locally without touching your API key quota.</div>
+
+<h2><span class="n">◈</span>Quick reference</h2>
+<table class="ref">
+  <tr><th>Item</th><th>Value</th></tr>
+  <tr><td>Start listener</td><td><code>prana-telegram</code> (voice on by default — see Voice guide)</td></tr>
+  <tr><td>Disable voice</td><td><code>prana-telegram --no-voice</code></td></tr>
+  <tr><td>Env var</td><td><code>TELEGRAM_BOT_TOKEN</code></td></tr>
+  <tr><td>Config file</td><td><code>%USERPROFILE%\.prana\config.json</code> → <code>"telegram": {"bot_token": "..."}</code></td></tr>
+  <tr><td>Your chat id</td><td>Message <b>@userinfobot</b></td></tr>
+  <tr><td>Proactive target</td><td><code>telegram:&lt;chat_id&gt;</code></td></tr>
+  <tr><td>Message limit</td><td>4000 chars (auto-chunked, lossless)</td></tr>
+  <tr><td>Local commands</td><td><code>/start</code> · <code>/help</code> (instant, zero tokens)</td></tr>
+</table>
+<p class="center small" style="margin-top:8mm">🫁 PRANA v0.1.0 · MIT License · github.com/Thegreatprabh/Prana</p>
+
+</body>
+</html>
