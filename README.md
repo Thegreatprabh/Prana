@@ -2,7 +2,7 @@
 
 ![PRANA](assets/prana-banner.svg)
 
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&pause=1000&color=00FF41&center=true&vCenter=true&width=900&lines=Give+any+chatbot+a+life;ReAct+loop+%2B+tools+%2B+memory+%2B+proactivity;Zero+dependencies.+Pure+Python+stdlib)](https://github.com/Thegreatprabh/Prana)
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&size=20&pause=1000&color=00FF41&center=true&vCenter=true&width=600&lines=Give+any+chatbot+a+life;ReAct+loop+%2B+tools+%2B+memory;Zero+dependencies.+Pure+Python)](https://github.com/Thegreatprabh/Prana)
 
 [![Tests](https://img.shields.io/badge/tests-291_passing-00ff41.svg)](#-verify-it-yourself)
 [![Python](https://img.shields.io/badge/python-3.10%2B-blue.svg)](pyproject.toml)
@@ -96,7 +96,19 @@ whole thing end-to-end — that's the point.
 Everyone else is ignored — no reply, nothing to probe. A guessed bot username
 gets an attacker exactly nowhere.
 
-📕 Step-by-step install PDFs (one per app): [`docs/guides/`](docs/guides/)
+## 📕 Install guides — download the PDFs
+
+Step-by-step setup, one PDF per app. Each guide marks what `prana-setup`
+does automatically (🤖) vs your 2-minute manual steps (👆). Tap any link to
+read it right in your browser, or download it.
+
+| Guide | Covers |
+|---|---|
+| [📩 Telegram Setup](PRANA-Telegram-Setup.pdf) | @BotFather bot, `prana-telegram`, pairing, voice notes |
+| [🟢 WhatsApp Setup](PRANA-WhatsApp-Setup.pdf) | Meta Cloud API, webhook, `prana-whatsapp` |
+| [🟣 Discord Setup](PRANA-Discord-Setup.pdf) | Bot portal, intents (37377), `prana-discord` |
+| [🎙️ Voice Notes Setup](PRANA-Voice-Setup.pdf) | Telegram voice notes (Whisper STT + TTS) |
+| [🔌 AI Agents MCP Setup](PRANA-AI-Agents-MCP-Setup.pdf) | MCP server → Claude Code/Desktop, Cursor, ChatGPT Desktop |
 
 ## 🔌 MCP server — PRANA inside your AI tools
 
