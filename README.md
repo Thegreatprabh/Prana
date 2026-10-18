@@ -29,7 +29,7 @@ prana --save-key          # sk-ant-… → Anthropic · AIza… → Gemini · sk
 prana --chat              # talk to your agent
 ```
 
-Bas. 4 commands me live agent. Details ke liye [install PDFs](#-install-guides--download-the-pdfs) dekho.
+Here is the installation pdfs for all the applications  separately click here to view [install PDFs](#-install-guides--download-the-pdfs) dekho.
 
 ## 🫁 What is PRANA?
 
