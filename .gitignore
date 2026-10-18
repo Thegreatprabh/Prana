@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+*.egg
+
+# Virtual environments
+.venv/
+venv/
+.env
+
+# Test / coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# PRANA runtime data (local, per-user — never commit)
+# (The app itself uses ~/.prana; this is for anyone who overrides PRANA_HOME
+#  into the repo dir by accident.)
+.prana/
+
+# OS / editors
+.DS_Store
+.idea/
+.vscode/
+*.swp

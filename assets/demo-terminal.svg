@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="440" viewBox="0 0 920 440">
+<defs>
+<linearGradient id="tbar" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0%" stop-color="#1c2330"/><stop offset="100%" stop-color="#12161d"/>
+</linearGradient>
+</defs>
+<rect x="0" y="0" width="920" height="440" rx="12" fill="#0d1117" stroke="#1f2a3a" stroke-width="1.5"/>
+<rect x="0" y="0" width="920" height="44" rx="12" fill="url(#tbar)"/>
+<rect x="0" y="30" width="920" height="14" fill="url(#tbar)"/>
+<circle cx="30" cy="22" r="7" fill="#ff5f57"/><circle cx="54" cy="22" r="7" fill="#febc2e"/><circle cx="78" cy="22" r="7" fill="#28c840"/>
+<text x="460" y="28" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="14" fill="#8b98a9">prana — live session</text>
+
+<g font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="15.5">
+<!-- line 1 -->
+<g opacity="0"><animate attributeName="opacity" from="0" to="1" begin="0.4s" dur="0.3s" fill="freeze"/>
+<text x="28" y="80" fill="#00ff41">$</text><text x="46" y="80" fill="#e6edf3">prana "ping me every morning at 9 with the market brief"</text></g>
+<!-- line 2 -->
+<g opacity="0"><animate attributeName="opacity" from="0" to="1" begin="1.6s" dur="0.3s" fill="freeze"/>
+<text x="28" y="114" fill="#8b98a9">loop: thinking… → tool call → </text><text x="318" y="114" fill="#00e5ff">schedule</text><text x="398" y="114" fill="#8b98a9">(name="market-brief", "0 9 * * *")</text></g>
+<!-- line 3 approval -->
+<g opacity="0"><animate attributeName="opacity" from="0" to="1" begin="2.9s" dur="0.3s" fill="freeze"/>
+<text x="28" y="148" fill="#febc2e">⚠ PRANA wants to run IRREVERSIBLE tool 'schedule'</text></g>
+<g opacity="0"><animate attributeName="opacity" from="0" to="1" begin="3.6s" dur="0.3s" fill="freeze"/>
+<text x="28" y="176" fill="#8b98a9">   Approve? [y/N] </text><text x="196" y="176" fill="#00ff41">y</text></g>
+<!-- line 4 -->
+<g opacity="0"><animate attributeName="opacity" from="0" to="1" begin="4.4s" dur="0.3s" fill="freeze"/>
+<text x="28" y="210" fill="#28c840">✓ job "market-brief" created · next run 09:00 IST</text></g>
+<!-- line 5 -->
+<g opacity="0"><animate attributeName="opacity" from="0" to="1" begin="5.4s" dur="0.3s" fill="freeze"/>
+<text x="28" y="258" fill="#8b98a9">— next morning —</text></g>
+<!-- line 6 -->
+<g opacity="0"><animate attributeName="opacity" from="0" to="1" begin="6.2s" dur="0.3s" fill="freeze"/>
+<text x="28" y="292" fill="#00e5ff">⏰ daemon tick 09:00 → job ran → result changed → [NOTIFY]</text></g>
+<!-- line 7 -->
+<g opacity="0"><animate attributeName="opacity" from="0" to="1" begin="7.2s" dur="0.3s" fill="freeze"/>
+<text x="28" y="326" fill="#e6edf3">📲 telegram → </text><text x="164" y="326" fill="#00ff41">"Morning. NIFTY +0.8%, BANKNIFTY +1.1%. Worth a look."</text></g>
+<!-- line 8 -->
+<g opacity="0"><animate attributeName="opacity" from="0" to="1" begin="8.2s" dur="0.3s" fill="freeze"/>
+<text x="28" y="374" fill="#00ff41">$</text><rect x="46" y="362" width="10" height="18" fill="#00ff41">
+<animate attributeName="opacity" values="1;0;1" dur="1.1s" repeatCount="indefinite"/></rect></g>
+<!-- line 9 -->
+<g opacity="0"><animate attributeName="opacity" from="0" to="1" begin="9s" dur="0.4s" fill="freeze"/>
+<text x="28" y="412" fill="#5b6572"># memory kept · nothing repeated · it just works. that's a runtime, not a chatbot.</text></g>
+</g>
+</svg>

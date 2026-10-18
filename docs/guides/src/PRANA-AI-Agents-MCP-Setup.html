@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>PRANA — AI Agents MCP Setup Guide</title>
+<style>
+@page { size: A4; margin: 16mm 14mm 18mm 14mm;
+  @bottom-left { content: "PRANA 🫁 Setup Guides"; font-size: 8pt; color: #8b949e; font-family: "Segoe UI", sans-serif; }
+  @bottom-right { content: "Page " counter(page); font-size: 8pt; color: #8b949e; font-family: "Segoe UI", sans-serif; }
+}
+@page :first { margin: 0; @bottom-left { content: none; } @bottom-right { content: none; } }
+* { box-sizing: border-box; }
+body { font-family: "Segoe UI", system-ui, -apple-system, sans-serif; color: #1c2128; font-size: 10.5pt; line-height: 1.6; margin: 0; background: #fff; }
+.cover { width: 210mm; height: 296mm; background: radial-gradient(1200px 600px at 80% -10%, #1a2340 0%, #0d1117 55%, #0d1117 100%); color: #f0f3f6; padding: 30mm 20mm 20mm 20mm; page-break-after: always; position: relative; overflow: hidden; }
+.cover::before { content: ""; position: absolute; top: -40mm; right: -30mm; width: 120mm; height: 120mm; border-radius: 50%; background: radial-gradient(circle, rgba(0,230,118,.16) 0%, transparent 70%); }
+.cover .kicker { display: inline-block; font-size: 10pt; letter-spacing: 3px; text-transform: uppercase; color: #00e676; border: 1px solid #00e676; border-radius: 20px; padding: 4px 16px; margin-bottom: 14mm; }
+.cover h1 { font-size: 38pt; line-height: 1.12; margin: 0 0 6mm 0; font-weight: 800; }
+.cover h1 .accent { color: #00e676; }
+.cover .sub { font-size: 14pt; color: #adbac7; max-width: 130mm; margin-bottom: 12mm; }
+.cover .meta { display: flex; gap: 8mm; margin-top: 10mm; }
+.cover .meta .pill { background: rgba(0,230,118,.1); border: 1px solid rgba(0,230,118,.35); border-radius: 10px; padding: 4mm 6mm; text-align: center; }
+.cover .meta .pill .v { font-size: 15pt; font-weight: 700; color: #00e676; }
+.cover .meta .pill .l { font-size: 8.5pt; color: #adbac7; }
+.cover .foot { position: absolute; bottom: 18mm; left: 20mm; right: 20mm; display: flex; justify-content: space-between; color: #636e7b; font-size: 9pt; border-top: 1px solid #222b33; padding-top: 5mm; }
+.brand { display: flex; align-items: center; gap: 3mm; font-weight: 700; font-size: 10pt; color: #0d1117; border-bottom: 3px solid #00e676; padding-bottom: 3mm; margin-bottom: 6mm; }
+.brand .tag { margin-left: auto; font-size: 8.5pt; font-weight: 600; color: #57606a; background: #eef1f4; padding: 1.5mm 4mm; border-radius: 12px; }
+h2 { font-size: 16pt; color: #0d1117; margin: 8mm 0 4mm 0; padding-bottom: 2mm; border-bottom: 2px solid #e6e9ee; }
+h2 .n { display: inline-block; background: #0d1117; color: #00e676; width: 8mm; height: 8mm; border-radius: 50%; text-align: center; line-height: 8mm; font-size: 11pt; margin-right: 2.5mm; }
+h3 { font-size: 12pt; color: #0d1117; margin: 5mm 0 2.5mm 0; }
+p, li { orphans: 3; widows: 3; }
+.toc { background: #f6f8fa; border: 1px solid #d8dee4; border-radius: 8px; padding: 5mm 7mm; margin: 4mm 0 6mm 0; }
+.toc h3 { margin: 0 0 2mm 0; font-size: 11pt; }
+.toc ol { margin: 0; padding-left: 6mm; }
+.toc li { margin: 1.2mm 0; font-size: 10pt; }
+.step { border: 1px solid #d8dee4; border-radius: 10px; margin: 4.5mm 0; overflow: hidden; page-break-inside: avoid; }
+.step-head { display: flex; align-items: center; gap: 3.5mm; background: linear-gradient(90deg, #0d1117, #1a2330); color: #fff; padding: 3.2mm 5mm; }
+.step-num { flex: 0 0 auto; width: 9mm; height: 9mm; border-radius: 50%; background: #00e676; color: #0d1117; font-weight: 800; font-size: 12pt; text-align: center; line-height: 9mm; }
+.step-title { font-size: 12pt; font-weight: 700; }
+.step-tags { margin-left: auto; display: flex; gap: 2mm; }
+.step-body { padding: 4mm 5mm; background: #fff; }
+.step-body p:first-child { margin-top: 0; } .step-body p:last-child { margin-bottom: 0; }
+.pill-auto, .pill-human { font-size: 8pt; font-weight: 700; letter-spacing: .4px; padding: 1.2mm 3mm; border-radius: 10px; white-space: nowrap; }
+.pill-auto { background: #dcfce7; color: #166534; border: 1px solid #86efac; }
+.pill-human { background: #fef3c7; color: #92400e; border: 1px solid #fcd34d; }
+.terminal { background: #0d1117; border-radius: 8px; margin: 3mm 0; overflow: hidden; page-break-inside: avoid; }
+.terminal .tbar { display: flex; gap: 2mm; align-items: center; background: #1c2330; padding: 2.2mm 4mm; }
+.terminal .tbar i { width: 3mm; height: 3mm; border-radius: 50%; display: block; }
+.terminal .tbar .t { margin-left: 2mm; color: #8b949e; font-size: 8.5pt; font-family: Consolas, monospace; }
+.terminal pre { margin: 0; padding: 3.5mm 5mm; color: #c9f5d8; font-family: "Cascadia Code", Consolas, monospace; font-size: 9pt; line-height: 1.65; white-space: pre-wrap; word-break: break-word; }
+.terminal pre .p { color: #00e676; font-weight: 700; }
+.terminal pre .c { color: #7d8590; }
+.terminal pre .o { color: #9ecbff; }
+.terminal.compact pre { font-size: 8pt; }
+.callout { border-radius: 8px; padding: 3.5mm 5mm; margin: 3.5mm 0; font-size: 10pt; page-break-inside: avoid; }
+.callout .ch { font-weight: 800; font-size: 9.5pt; letter-spacing: .5px; text-transform: uppercase; margin-bottom: 1.5mm; }
+.callout.warn { background: #fffbeb; border-left: 5px solid #f59e0b; }
+.callout.warn .ch { color: #92400e; }
+.callout.info { background: #eff6ff; border-left: 5px solid #3b82f6; }
+.callout.info .ch { color: #1d4ed8; }
+.callout.tip { background: #f0fdf4; border-left: 5px solid #00c853; }
+.callout.tip .ch { color: #166534; }
+.callout.danger { background: #fef2f2; border-left: 5px solid #ef4444; }
+.callout.danger .ch { color: #b91c1c; }
+.flow { display: flex; align-items: stretch; justify-content: space-between; margin: 4mm 0; page-break-inside: avoid; }
+.fbox { flex: 1; background: #0d1117; color: #e6edf3; border: 1px solid #30363d; border-radius: 8px; padding: 3mm; text-align: center; font-size: 8.8pt; }
+.fbox b { display: block; color: #00e676; font-size: 9.5pt; margin-bottom: 1mm; }
+.farrow { flex: 0 0 auto; align-self: center; color: #00c853; font-size: 16pt; font-weight: 800; padding: 0 1.5mm; }
+table.ref, table.trouble { width: 100%; border-collapse: collapse; margin: 3mm 0; font-size: 9.5pt; page-break-inside: avoid; }
+table.ref th, table.trouble th { background: #0d1117; color: #00e676; text-align: left; padding: 2.5mm 3.5mm; font-size: 9pt; }
+table.ref td, table.trouble td { border: 1px solid #d8dee4; padding: 2.5mm 3.5mm; vertical-align: top; }
+table.ref tr:nth-child(even) td, table.trouble tr:nth-child(even) td { background: #f6f8fa; }
+code, .mono { font-family: "Cascadia Code", Consolas, monospace; font-size: 9pt; background: #eef1f4; padding: .5mm 1.5mm; border-radius: 4px; color: #0d1117; }
+table.trouble td:first-child { font-family: "Cascadia Code", Consolas, monospace; font-size: 8.8pt; color: #b42318; }
+.check { list-style: none; padding: 0; }
+.check li { padding: 1.5mm 0 1.5mm 8mm; position: relative; }
+.check li::before { content: "✅"; position: absolute; left: 0; }
+.legend { display: flex; gap: 6mm; margin: 3mm 0; font-size: 9.5pt; }
+.pagebreak { page-break-before: always; }
+.small { font-size: 9pt; color: #57606a; }
+.center { text-align: center; }
+.agent { border: 1px solid #d8dee4; border-radius: 10px; margin: 4mm 0; overflow: hidden; page-break-inside: avoid; }
+.agent-head { background: #f6f8fa; border-bottom: 1px solid #d8dee4; padding: 3mm 5mm; font-weight: 800; font-size: 11.5pt; }
+.agent-head .file { display: block; font-weight: 400; font-size: 9pt; color: #57606a; font-family: "Cascadia Code", Consolas, monospace; margin-top: 1mm; }
+.agent-body { padding: 3.5mm 5mm; }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="kicker">PRANA 🫁 &nbsp;·&nbsp; Setup Guide</div>
+  <h1>PRANA inside<br><span class="accent">your AI agents</span></h1>
+  <p class="sub">Plug PRANA's brain into Claude Code, Claude Desktop, Cursor, ChatGPT Desktop &amp; Gemini CLI via MCP. One command does it all.</p>
+  <div class="meta">
+    <div class="pill"><div class="v">1 command</div><div class="l">prana-setup</div></div>
+    <div class="pill"><div class="v">5 tools</div><div class="l">exposed via MCP</div></div>
+    <div class="pill"><div class="v">6 agents</div><div class="l">supported</div></div>
+  </div>
+  <div class="foot"><span>🫁 PRANA v0.1.0 — give any chatbot a life</span><span>Premium Setup Series · 5 of 5</span></div>
+</div>
+
+<div class="brand">🫁 PRANA <span class="tag">AI Agents MCP Setup Guide</span></div>
+
+<div class="legend">
+  <span><span class="pill-auto">🤖 AUTOMATIC</span> — prana-setup does it</span>
+  <span><span class="pill-human">👆 YOUR STEP</span> — restart the app / paste a block</span>
+</div>
+
+<div class="toc">
+  <h3>📑 Contents</h3>
+  <ol>
+    <li>What you're building</li>
+    <li>The 5 brain tools your agents get</li>
+    <li>Step 1 — One-command install: prana-setup <span class="pill-auto">🤖</span></li>
+    <li>Step 2 — Restart your agent apps <span class="pill-human">👆 YOUR STEP</span></li>
+    <li>Manual setup per agent (if you prefer hand control)</li>
+    <li>The Windows full-path rule ⚠️</li>
+    <li>Verify it works ✅</li>
+    <li>Troubleshooting</li>
+    <li>Quick reference</li>
+  </ol>
+</div>
+
+<h2><span class="n">◈</span>What you're building</h2>
+<p><b>MCP</b> (Model Context Protocol) is the USB port for AI agents. PRANA ships an MCP server (<code>prana-mcp</code>) that exposes its whole brain — ReAct loop, tools, memory, scheduler — to any MCP-capable agent. After this guide, you can ask <b>Claude Code, Cursor, or ChatGPT Desktop</b> to <i>"use PRANA to schedule a daily briefing"</i> and it just works.</p>
+
+<h2><span class="n">◈</span>The 5 brain tools your agents get</h2>
+<table class="ref">
+  <tr><th>Tool</th><th>What it does</th></tr>
+  <tr><td><code>prana_chat</code></td><td>Run one task through PRANA's full brain (loop + tools + memory + personality mode). Returns the final answer.</td></tr>
+  <tr><td><code>prana_remember</code></td><td>Store a durable fact in long-term memory. Credentials are refused, never stored.</td></tr>
+  <tr><td><code>prana_recall</code></td><td>Search long-term memory for relevant snippets.</td></tr>
+  <tr><td><code>prana_schedule</code></td><td>Create a persistent scheduled job (cron / @daily / "every 30m"). The daemon runs it.</td></tr>
+  <tr><td><code>prana_jobs</code></td><td>List scheduled jobs: name, schedule, active state, delivery target.</td></tr>
+</table>
+<p class="small">API key for <code>prana_chat</code> resolves as: tool arg <code>key</code> → <code>OPENAI_API_KEY</code> / <code>ANTHROPIC_API_KEY</code> / <code>GEMINI_API_KEY</code> env → <code>~/.prana/config.json</code>. Never logged, never echoed.</p>
+
+<div class="step">
+  <div class="step-head"><div class="step-num">1</div><div class="step-title">One-command install: prana-setup</div><div class="step-tags"><span class="pill-auto">🤖 AUTOMATIC</span></div></div>
+  <div class="step-body">
+    <p><code>prana-setup</code> does three things: saves your API key, <b>detects your installed agents</b>, and writes the MCP config for each — merging, never clobbering existing entries.</p>
+    <div class="terminal"><div class="tbar"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i><span class="t">PowerShell</span></div><pre><span class="p">$</span> prana-setup
+<span class="o">== prana setup — instant installer ==
+python: C:\Users\YOU\AppData\Local\Programs\Python\Python314\python.exe
+
+Paste API key (hidden, any provider): ••••••••
+API key saved for openai → C:\Users\YOU\.prana\config.json (0600)
+
+agents: Claude Code / Claude Desktop, Cursor
+Write MCP configs? [Y/n] y
+  Claude Code / Claude Desktop: configured → C:\Users\YOU\.claude.json
+  Cursor: configured → C:\Users\YOU\.cursor\mcp.json</span></pre></div>
+    <h3>Non-interactive flavors</h3>
+    <div class="terminal"><div class="tbar"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i><span class="t">PowerShell</span></div><pre><span class="p">$</span> prana-setup --key sk-... --yes          <span class="c"># key + all detected agents, no prompts</span>
+<span class="p">$</span> prana-setup --agents claude,cursor        <span class="c"># only these agents</span>
+<span class="p">$</span> prana-setup --dry-run                    <span class="c"># preview what WOULD be written, change nothing</span>
+<span class="p">$</span> prana-setup --check                      <span class="c"># verify installation health anytime</span></pre></div>
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-head"><div class="step-num">2</div><div class="step-title">Restart your agent apps</div><div class="step-tags"><span class="pill-human">👆 YOUR STEP</span></div></div>
+  <div class="step-body">
+    <p>MCP configs load <b>at app startup</b>. After <code>prana-setup</code> writes them: <b>fully quit and reopen</b> Claude Desktop / Cursor / ChatGPT Desktop (not just the chat — the whole app). CLI agents (Claude Code, Codex CLI, Gemini CLI) pick it up on next launch.</p>
+  </div>
+</div>
+
+<div class="pagebreak"></div>
+<div class="brand">🫁 PRANA <span class="tag">AI Agents MCP Setup Guide</span></div>
+<h2><span class="n">◈</span>Manual setup per agent</h2>
+<p class="small">Prefer hand control, or want to understand what <code>prana-setup</code> wrote? Each agent, its file, and the exact block. <b>Replace the python path with YOUR full path</b> (see the Windows rule below).</p>
+
+<div class="agent">
+  <div class="agent-head">Claude Code <span class="file">%USERPROFILE%\.claude.json</span></div>
+  <div class="agent-body">
+    <div class="terminal compact"><div class="tbar"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i><span class="t">.claude.json — merge into "mcpServers"</span></div><pre>{
+  <span class="p">"mcpServers"</span>: {
+    <span class="p">"prana"</span>: {
+      <span class="p">"command"</span>: <span class="o">"C:\\Users\\YOU\\AppData\\Local\\Programs\\Python\\Python314\\python.exe"</span>,
+      <span class="p">"args"</span>: [<span class="o">"-m"</span>, <span class="o">"prana.mcp_server"</span>]
+    }
+  }
+}</pre></div>
+  </div>
+</div>
+
+<div class="agent">
+  <div class="agent-head">Claude Desktop <span class="file">%APPDATA%\Claude\claude_desktop_config.json</span></div>
+  <div class="agent-body">
+    <p>Same <code>mcpServers.prana</code> block as above. Then <b>fully quit and reopen</b> Claude Desktop.</p>
+  </div>
+</div>
+
+<div class="agent">
+  <div class="agent-head">Cursor <span class="file">%USERPROFILE%\.cursor\mcp.json</span></div>
+  <div class="agent-body">
+    <p>Same <code>mcpServers.prana</code> block as above. Then <b>restart Cursor</b>.</p>
+  </div>
+</div>
+
+<div class="agent">
+  <div class="agent-head">Codex CLI / ChatGPT Desktop <span class="file">%USERPROFILE%\.codex\config.toml</span></div>
+  <div class="agent-body">
+    <p>TOML format — append this block:</p>
+    <div class="terminal"><div class="tbar"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i><span class="t">config.toml</span></div><pre><span class="c"># add at the end of the file (idempotent — never duplicate)</span>
+[mcp_servers.prana]
+command = <span class="o">"C:\\Users\\YOU\\AppData\\Local\\Programs\\Python\\Python314\\python.exe"</span>
+args = [<span class="o">"-m"</span>, <span class="o">"prana.mcp_server"</span>]</pre></div>
+    <p class="small">ChatGPT Desktop shares this file with Codex CLI. Verify with <code>/mcp</code> in chat after reopening.</p>
+  </div>
+</div>
+
+<div class="agent">
+  <div class="agent-head">Gemini CLI <span class="file">%USERPROFILE%\.gemini\settings.json</span></div>
+  <div class="agent-body">
+    <p>Same <code>mcpServers.prana</code> JSON block as Claude Code.</p>
+  </div>
+</div>
+
+<div class="agent">
+  <div class="agent-head">Antigravity <span style="font-size:9pt; font-weight:400; color:#92400e;">(manual only — no config file)</span></div>
+  <div class="agent-body">
+    <p>Agent panel → <b>…</b> → <b>MCP Servers</b> → <b>View raw config</b> → paste:</p>
+    <div class="terminal compact"><div class="tbar"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i><span class="t">raw config JSON</span></div><pre>{
+  <span class="p">"mcpServers"</span>: {
+    <span class="p">"prana"</span>: {
+      <span class="p">"command"</span>: <span class="o">"C:\\Users\\YOU\\AppData\\Local\\Programs\\Python\\Python314\\python.exe"</span>,
+      <span class="p">"args"</span>: [<span class="o">"-m"</span>, <span class="o">"prana.mcp_server"</span>]
+    }
+  }
+}</pre></div>
+  </div>
+</div>
+
+<div class="pagebreak"></div>
+<div class="brand">🫁 PRANA <span class="tag">AI Agents MCP Setup Guide</span></div>
+
+<h2><span class="n">⚠</span>The Windows full-path rule</h2>
+<div class="callout danger"><div class="ch">⛔ Never use a bare "python"</div><b>GUI apps (Claude Desktop, Cursor, ChatGPT Desktop) do NOT inherit your terminal PATH.</b> A bare <code>"command": "python"</code> will silently fail to start the server. Always use the <b>full python path</b> — this is exactly what <code>prana-setup</code> writes automatically.</div>
+<p><b>Find YOUR path</b> (yours will differ — never copy the example blindly):</p>
+<div class="terminal"><div class="tbar"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i><span class="t">PowerShell</span></div><pre><span class="p">$</span> py -c "import sys; print(sys.executable)"
+<span class="o">C:\Users\YOU\AppData\Local\Programs\Python\Python314\python.exe</span>
+<span class="c"># in JSON, backslashes must be doubled: C:\\Users\\YOU\\...</span></pre></div>
+<div class="callout warn"><div class="ch">⚠️ pip ≠ python trap</div>On some machines <code>pip</code> and <code>python</code> point to <b>different</b> Pythons. Always install with <code>python -m pip install -e .</code> (or <code>py -m pip</code>) using the <i>same</i> interpreter that's in your MCP config. Switched interpreters later? Re-run <code>prana-setup</code>.</div>
+
+<h2><span class="n">✓</span>Verify it works</h2>
+<ul class="check">
+  <li>Run <code>prana-setup --check</code> → ends with <b>"All green — PRANA is ready."</b></li>
+  <li>Restart the agent app (full quit → reopen)</li>
+  <li>In the agent's chat/tools panel, confirm <b>prana</b> appears with its 5 tools</li>
+  <li>Ask it: <i>"use prana_chat to summarize what PRANA can do, teacher mode"</i></li>
+</ul>
+
+<div class="pagebreak"></div>
+<div class="brand">🫁 PRANA <span class="tag">AI Agents MCP Setup Guide</span></div>
+<h2><span class="n">✚</span>Troubleshooting</h2>
+<table class="trouble">
+  <tr><th style="width:42%">Error / symptom</th><th>Fix</th></tr>
+  <tr><td>"No MCP server named prana is currently connected"</td><td>The server isn't starting. #1 cause: bare <code>python</code> in config (GUI PATH issue) → use the <b>full python path</b>. Then fully quit + reopen the app.</td></tr>
+  <tr><td>Settings show prana "Enabled" but chat says not connected</td><td>Same root cause — the settings UI reads the config, but the server process failed to launch. Fix the command path, restart.</td></tr>
+  <tr><td>ChatGPT <i>web</i> can't see PRANA</td><td>Expected — the web app can't run local stdio servers (HTTPS remote only). Use <b>ChatGPT Desktop</b>, which shares <code>~/.codex/config.toml</code>.</td></tr>
+  <tr><td>Edited config, agent still doesn't see it</td><td>MCP configs load at startup. <b>Fully quit and reopen</b> the app — not just the chat window.</td></tr>
+  <tr><td>prana_chat says "no API key found"</td><td>Key resolution: tool arg <code>key</code> → env (<code>OPENAI_API_KEY</code> / <code>ANTHROPIC_API_KEY</code> / <code>GEMINI_API_KEY</code>) → <code>~/.prana/config.json</code>. Run <code>prana --save-key</code> once and it works everywhere.</td></tr>
+  <tr><td>Tools work, then break after a Python reinstall</td><td>The full python path in the config now points nowhere. Re-run <code>prana-setup</code> to rewrite it.</td></tr>
+  <tr><td>Corrupt JSON config after hand-editing</td><td><code>prana-setup</code> never clobbers: it merges into <code>mcpServers</code> and validates. Re-run it to repair.</td></tr>
+</table>
+
+<h2><span class="n">◈</span>Quick reference</h2>
+<table class="ref">
+  <tr><th>Agent</th><th>Config file (Windows)</th><th>Format</th></tr>
+  <tr><td>Claude Code</td><td><code>%USERPROFILE%\.claude.json</code></td><td>JSON <code>mcpServers</code></td></tr>
+  <tr><td>Claude Desktop</td><td><code>%APPDATA%\Claude\claude_desktop_config.json</code></td><td>JSON <code>mcpServers</code></td></tr>
+  <tr><td>Cursor</td><td><code>%USERPROFILE%\.cursor\mcp.json</code></td><td>JSON <code>mcpServers</code></td></tr>
+  <tr><td>Codex CLI / ChatGPT Desktop</td><td><code>%USERPROFILE%\.codex\config.toml</code></td><td>TOML <code>[mcp_servers.prana]</code></td></tr>
+  <tr><td>Gemini CLI</td><td><code>%USERPROFILE%\.gemini\settings.json</code></td><td>JSON <code>mcpServers</code></td></tr>
+  <tr><td>Antigravity</td><td>UI: Agent panel → … → MCP Servers → View raw config</td><td>paste JSON block</td></tr>
+</table>
+<table class="ref">
+  <tr><th>Command</th><th>Does</th></tr>
+  <tr><td><code>prana-setup</code></td><td>Interactive: key + detected agents + channel steps</td></tr>
+  <tr><td><code>prana-setup --check</code></td><td>Health check — "All green" when ready</td></tr>
+  <tr><td><code>prana-setup --dry-run</code></td><td>Preview writes without changing anything</td></tr>
+  <tr><td><code>prana-mcp</code></td><td>Run the MCP server directly (stdio)</td></tr>
+</table>
+<p class="center small" style="margin-top:8mm">🫁 PRANA v0.1.0 · MIT License · github.com/Thegreatprabh/Prana</p>
+
+</body>
+</html>
