@@ -26,7 +26,7 @@ def tmp_home(tmp_path, monkeypatch):
     return tmp_path
 
 
-# -- API key ---------------------------------------------------------------
+# -- API key -----------------------------------------------------------------
 
 def test_save_key_roundtrip_detects_provider(tmp_home):
     name, path = setup.save_api_key("sk-ant-test123")
@@ -64,7 +64,7 @@ def test_key_never_echoed_in_output(tmp_home, capsys):
     assert "sk-ant-" not in out  # not even the prefix
 
 
-# -- JSON merge ------------------------------------------------------------
+# -- JSON merge -----------------------------------------------------------------
 
 def test_json_merge_preserves_existing_servers(tmp_home):
     cursor_cfg = tmp_home / ".cursor" / "mcp.json"
@@ -95,7 +95,7 @@ def test_json_merge_tolerates_corrupt_file(tmp_home):
     assert "prana" in data["mcpServers"]
 
 
-# -- TOML append -----------------------------------------------------------
+# -- TOML append -----------------------------------------------------------------
 
 def test_toml_append_preserves_and_is_idempotent(tmp_home):
     toml_path = tmp_home / ".codex" / "config.toml"
@@ -107,10 +107,15 @@ def test_toml_append_preserves_and_is_idempotent(tmp_home):
     assert '[mcp_servers.other]' in text
     assert '[mcp_servers.prana]' in text
     assert 'args = ["-m", "prana.mcp_server"]' in text
-    # valid TOML
-    import tomllib
-    data = tomllib.loads(text)
-    assert data["mcp_servers"]["prana"]["args"] == ["-m", "prana.mcp_server"]
+    # valid TOML (tomllib is stdlib on 3.11+; on 3.10 the parse check is
+    # skipped -- the no-tomllib fallback path has its own test below)
+    try:
+        import tomllib
+    except ModuleNotFoundError:
+        tomllib = None
+    if tomllib is not None:
+        data = tomllib.loads(text)
+        assert data["mcp_servers"]["prana"]["args"] == ["-m", "prana.mcp_server"]
     # second run: no duplicate block
     setup.apply_agents(setup.plan_agents(["codex"]))
     assert toml_path.read_text().count("[mcp_servers.prana]") == 1
@@ -124,7 +129,7 @@ def test_toml_append_without_tomllib_falls_back(tmp_home, monkeypatch):
     assert "[mcp_servers.prana]" in toml_path.read_text()
 
 
-# -- dry-run ----------------------------------------------------------------
+# -- dry-run -----------------------------------------------------------------
 
 def test_dry_run_writes_nothing(tmp_home, capsys):
     items = setup.plan_agents(["cursor", "codex", "claude"])
@@ -135,7 +140,7 @@ def test_dry_run_writes_nothing(tmp_home, capsys):
     assert not (tmp_home / ".claude.json").exists()
 
 
-# -- agent selection ----------------------------------------------------------
+# -- agent selection -----------------------------------------------------------------
 
 def test_parse_agents_all_and_unknown():
     keys = setup._parse_agents("all")
@@ -162,7 +167,7 @@ def test_detect_agents(tmp_home, monkeypatch):
     assert "cursor" in setup.detect_agents()
 
 
-# -- main() end to end ----------------------------------------------------------
+# -- main() end to end -----------------------------------------------------------------
 
 def test_main_noninteractive_full_flow(tmp_home, capsys):
     rc = setup.main(["--key", "sk-ant-e2e123", "--agents", "cursor,codex",
@@ -187,7 +192,7 @@ def test_main_skip_everything(tmp_home, capsys):
     assert capsys.readouterr().out.count("done") >= 1
 
 
-# -- --check mode ---------------------------------------------------------------
+# -- --check mode -----------------------------------------------------------------
 
 def test_check_all_green(tmp_home, capsys):
     setup.save_api_key("sk-ant-check1")
@@ -235,7 +240,7 @@ def test_check_toml_entry(tmp_home, capsys):
     assert rc == 0
 
 
-# -- channels summary -------------------------------------------------------------
+# -- channels summary -----------------------------------------------------------------
 
 def test_channels_summary_mentions_commands():
     text = setup.channels_summary()
