@@ -4,7 +4,7 @@
 
 [![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&size=20&pause=1000&color=00FF41&center=true&vCenter=true&width=600&lines=Give+any+chatbot+a+life;ReAct+loop+%2B+tools+%2B+memory;Zero+dependencies.+Pure+Python)](https://github.com/Thegreatprabh/Prana)
 
-[![Tests](https://img.shields.io/badge/tests-291_passing-00ff41.svg)](#-verify-it-yourself)
+[![CI](https://github.com/Thegreatprabh/Prana/actions/workflows/ci.yml/badge.svg)](https://github.com/Thegreatprabh/Prana/actions/workflows/ci.yml)
 [![Python](https://img.shields.io/badge/python-3.10%2B-blue.svg)](pyproject.toml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Dependencies](https://img.shields.io/badge/dependencies-zero-00e5ff.svg)](pyproject.toml)
